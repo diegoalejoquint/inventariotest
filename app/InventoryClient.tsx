@@ -77,7 +77,7 @@ export default function InventoryClient({ items }: { items: Item[] }) {
     e.preventDefault();
     if (!newItemName || !newItemBuyPrice) return;
 
-    await fetch("http://backend:8000/items", {
+    await fetch("http://localhost:8000/items", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -98,7 +98,7 @@ export default function InventoryClient({ items }: { items: Item[] }) {
       return;
     }
 
-    await fetch(`http://backend:8000/items/${id}/sell`, {
+    await fetch(`http://localhost:8000/items/${id}/sell`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sellPrice }),
@@ -109,7 +109,7 @@ export default function InventoryClient({ items }: { items: Item[] }) {
 
   const handleClearHistory = async () => {
     if (!confirm(lang === "en" ? "Clear all sold items history?" : "¿Eliminar todo el historial de ventas?")) return;
-    await fetch("http://backend:8000/items/sold", { method: "DELETE" });
+    await fetch("http://localhost:8000/items/sold", { method: "DELETE" });
     router.refresh();
   };
 
